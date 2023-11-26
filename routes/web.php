@@ -13,6 +13,7 @@ use App\Http\Controllers\HeadTeacherController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\AssignClassTeacherController;
+use App\Http\Controllers\ExaminationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,7 +77,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('admin/school/edit/{id}', [SchoolController::class, 'edit']);
     Route::post('admin/school/edit/{id}', [SchoolController::class, 'update']);
     Route::get('admin/school/delete/{id}', [SchoolController::class, 'delete']);
-
+    
     // subject routes
     Route::get('admin/subject/list', [SubjectController::class, 'list']);
     Route::get('admin/subject/add', [SubjectController::class, 'add']);
@@ -84,7 +85,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('admin/subject/edit/{id}', [SubjectController::class, 'edit']);
     Route::post('admin/subject/edit/{id}', [SubjectController::class, 'update']);
     Route::get('admin/subject/delete/{id}', [SubjectController::class, 'delete']);
-
+    
     // teacher routes
     Route::get('admin/teacher/list', [TeacherController::class, 'list']);
     Route::get('admin/teacher/add', [TeacherController::class, 'add']);
@@ -92,7 +93,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('admin/teacher/edit/{id}', [TeacherController::class, 'edit']);
     Route::post('admin/teacher/edit/{id}', [TeacherController::class, 'update']);
     Route::get('admin/teacher/delete/{id}', [TeacherController::class, 'delete']);
-
+    
     // Head teacher routes
     Route::get('admin/Headteacher/list', [HeadTeacherController::class, 'list']);
     Route::get('admin/Headteacher/add', [HeadTeacherController::class, 'add']);
@@ -100,7 +101,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('admin/Headteacher/edit/{id}', [HeadTeacherController::class, 'edit']);
     Route::post('admin/Headteacher/edit/{id}', [HeadTeacherController::class, 'update']);
     Route::get('admin/Headteacher/delete/{id}', [HeadTeacherController::class, 'delete']);
-
+    
     //assign_subject
     Route::get('admin/assign_subject/list', [ClassSubjectController::class, 'list']);
     Route::get('admin/assign_subject/add', [ClassSubjectController::class, 'add']);
@@ -110,7 +111,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('admin/assign_subject/delete/{id}', [ClassSubjectController::class, 'delete']);
     Route::get('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'edit_single']);
     Route::post('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'update_single']);
-
+    
     //assign class teacher
     Route::get('admin/assign_class_teacher/list', [AssignClassTeacherController::class, 'list']);
     Route::get('admin/assign_class_teacher/add', [AssignClassTeacherController::class, 'add']);
@@ -120,12 +121,23 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('admin/assign_class_teacher/edit_single/{id}', [AssignClassTeacherController::class, 'edit_single']);
     Route::post('admin/assign_class_teacher/edit_single/{id}', [AssignClassTeacherController::class, 'update_single']);
     Route::get('admin/assign_class_teacher/delete/{id}', [AssignClassTeacherController::class, 'delete']);
-
+    
     //My Account
     Route::get('admin/account', [UserController::class, 'myAccount']);
     Route::post('admin/account', [UserController::class, 'update_MyaccountAdmin']);
 
-
+    //Examination routes
+    Route::get('admin/examination/exam/list', [ExaminationController::class, 'list']);
+    Route::get('admin/admin/add', [ExaminationController::class, 'add']);
+    Route::post('admin/admin/add', [ExaminationController::class, 'insert']);
+    Route::get('admin/admin/edit/{id}', [ExaminationController::class, 'edit']);
+    Route::post('admin/admin/edit/{id}', [ExaminationController::class, 'update']);
+    Route::get('admin/admin/delete/{id}', [ExaminationController::class, 'delete']);
+    
+    //Marks Register
+    Route::get('admin/examinations/marks_register', [ExaminationController::class, 'marks_register']);
+    
+    
 });
 
 //Teacher middleware

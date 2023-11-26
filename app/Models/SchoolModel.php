@@ -44,7 +44,6 @@ class SchoolModel extends Model
     static public function getSchool()
     {
         $return = SchoolModel::select('school.*')
-        // ->join('users', 'users.id', 'school.created_by')
         ->where('school.is_delete', '=', 0 )
         ->orderBy('school.name', 'asc')
         ->get();
