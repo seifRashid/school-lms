@@ -8,7 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class ExamModel extends Model
 {
     use HasFactory;
-    protected $table = 'exams';
+    protected $table = 'exam';
+
+    static public function getRecord()
+    {
+        return self::select('exam.*', 'users.name as created_name')
+                    ->join('users', 'users.id', '=' , 'exam.created_by')
+                    ->orderBy('exam.', 'desc')
+                    ->paginate(50);
+
+    }
 
     static public function getExam()
     {

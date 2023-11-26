@@ -127,7 +127,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::post('admin/account', [UserController::class, 'update_MyaccountAdmin']);
 
     //Examination routes
-    Route::get('admin/examination/exam/list', [ExaminationController::class, 'list']);
+    Route::get('admin/examinations/exam/list', [ExaminationController::class, 'exam_list']);
     Route::get('admin/admin/add', [ExaminationController::class, 'add']);
     Route::post('admin/admin/add', [ExaminationController::class, 'insert']);
     Route::get('admin/admin/edit/{id}', [ExaminationController::class, 'edit']);
