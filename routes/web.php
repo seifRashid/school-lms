@@ -128,11 +128,8 @@ Route::group(['middleware'=>'admin'], function(){
 
     //Examination routes
     Route::get('admin/examinations/exam/list', [ExaminationController::class, 'exam_list']);
-    Route::get('admin/admin/add', [ExaminationController::class, 'add']);
-    Route::post('admin/admin/add', [ExaminationController::class, 'insert']);
-    Route::get('admin/admin/edit/{id}', [ExaminationController::class, 'edit']);
-    Route::post('admin/admin/edit/{id}', [ExaminationController::class, 'update']);
-    Route::get('admin/admin/delete/{id}', [ExaminationController::class, 'delete']);
+    Route::get('admin/examinations/exam/add', [ExaminationController::class, 'exam_add']);
+    Route::post('admin/examinations/exam/add', [ExaminationController::class, 'exam_insert']);
     
     //Marks Register
     Route::get('admin/examinations/marks_register', [ExaminationController::class, 'marks_register']);

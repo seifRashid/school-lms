@@ -13,7 +13,7 @@
             @include('_message')
           </div>
           <div class="col-sm-4" style="text-align: right;" >
-            <a href="{{url('admin/admin/add')}}" class="btn btn-primary">Add new Exam</a>
+            <a href="{{url('admin/examinations/exam/add')}}" class="btn btn-primary">Add new Exam</a>
           </div>
         </div>
       </div><!-- /.container-fluid -->

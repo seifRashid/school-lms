@@ -17,6 +17,24 @@ class ExaminationController extends Controller
         return view('admin.examinations.exam.list', $data);
     }
 
+    public function exam_add()
+    {
+        $data['header_title'] = "Exam List";
+        return view('admin.examinations.exam.add', $data);
+    }
+
+    public function exam_insert(Request $request)
+    {
+        $exam = new ExamModel;
+        $exam->name = trim($request->name);
+        $exam->note = trim($request->note);
+        $exam->created_by = Auth::user()->id;
+        $exam->save();
+
+        return redirect()->back()->with('success', "Exam successfully created");
+
+    }
+
     public function marks_register()
     {
         $data['getClass'] = ClassModel::getClass();
