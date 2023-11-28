@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-4">
-            <h1>Admin list (Total:{{ $getRecord->total() }})</h1>
+            <h1>Admin list</h1>
           </div>
           <div class="col-sm-4">
             @include('_message')
@@ -23,22 +23,33 @@
     <div class="container-fluid">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Search Exam</h3>
+              <h3 class="card-title">Search Exam Schedule</h3>
             </div>
               <form method="get" action="">
                   <div class="card-body">
                     <div class="row">
                       <div class="form-group  col-md-3">
                           <label>Exam Name</label>
-                          <input type="text" class="form-control" name="name" value="{{Request::get('name')}}" placeholder="Enter name">
+                          <select name="exam_id" class="form-control" required>
+                            <option value="">Select</option>
+                            @foreach ($getExam as $exam)
+                             <option {{ (Request::get('exam_id') == $exam->id) ? 'selected':'' }} value="{{ $exam->id}}">{{ $exam->name}}</option>                              
+                            @endforeach
+                          </select>
                       </div>
+
                       <div class="form-group  col-md-3">
-                          <label>Date</label>
-                          <input type="date" class="form-control" name="date" value="{{Request::get('date')}}" placeholder="Enter date">
+                          <label>Class</label>
+                          <select name="class_id" class="form-control" required>
+                            <option value="">Select</option>
+                            @foreach ($getClass as $class)
+                             <option {{ (Request::get('class_id') == $class->id) ? 'selected':'' }} value="{{ $class->id}}">{{ $class->name}}</option>                              
+                            @endforeach
+                          </select>
                       </div>
                       <div class="form-group col-md-3" style="margin-top:32px">
                         <button type="submit" class="btn btn-primary">Search</button>
-                        <a href="{{url('admin/examinations/exam/list')}}" class="btn btn-success">Clear</a>
+                        <a href="{{url('admin/examinations/exam_schedule')}}" class="btn btn-success">Clear</a>
                       </div>
                     </div>
                   </div>
@@ -65,27 +76,10 @@
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody>
-                @foreach ($getRecord as $value)
-                  <tr>
-                    <td>{{ $value->id }}</td>
-                    <td>{{ $value->name }}</td>
-                    <td>{{ $value->note }}</td>
-                    <td>{{ $value->created_name }}</td>
-                    <td>{{ date('d-m-Y H:i A'), strtotime($value->created_at) }}</td>
-                    <td>
-                      <a href="{{url('admin/examinations/exam/edit/'.$value->id)}}" class="btn btn-success mr-2">Edit</a>
-                      <a href="{{url('admin/examinations/exam/delete/'.$value->id)}}" class="btn btn-danger">Delete</a> 
-                    </td>
-                  </tr>
-                @endforeach
-              </tbody>
+              
             </table>
 
             <!-- the connector to bootsrap in in the AppServiceProvider -->
-            <div style="padding:10px; float:right;">
-              {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
-            </div>
           </div>
         </div>
   </div>

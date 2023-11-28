@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\AssignClassTeacherController;
 use App\Http\Controllers\ExaminationController;
+use App\Http\Controllers\AttendanceStudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,10 +131,21 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('admin/examinations/exam/list', [ExaminationController::class, 'exam_list']);
     Route::get('admin/examinations/exam/add', [ExaminationController::class, 'exam_add']);
     Route::post('admin/examinations/exam/add', [ExaminationController::class, 'exam_insert']);
+    Route::get('admin/examinations/exam/edit/{id}', [ExaminationController::class, 'exam_edit']);
+    Route::post('admin/examinations/exam/edit/{id}', [ExaminationController::class, 'exam_update']);
+    Route::get('admin/examinations/exam/delete/{id}', [ExaminationController::class, 'exam_delete']);
     
+    //Exam schedule
+    Route::get('admin/examinations/exam_schedule', [ExaminationController::class, 'exam_schedule']);
+
+
     //Marks Register
     Route::get('admin/examinations/marks_register', [ExaminationController::class, 'marks_register']);
     
+    
+    //Students Attendance
+    Route::get('admin/attendance/student', [AttendanceStudentController::class, 'attendance_student']);
+
     
 });
 
