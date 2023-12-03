@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="{{ url('public/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ url('public/plugins/summernote/summernote-bs4.min.css') }}">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -75,6 +76,8 @@
 <script src="{{url('public/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{url('')}} public/dist/js/pages/dashboard.js"></script>
+
+@yield('script')
 </body>
 </html>
 
