@@ -147,18 +147,23 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('admin/attendance/student', [AttendanceStudentController::class, 'attendance_student']);
     Route::post('admin/attendance/student/save', [AttendanceStudentController::class, 'attendance_student_submit']);
     Route::get('admin/attendance/report', [AttendanceStudentController::class, 'attendance_report']);
-
+    
     
 });
 
 //Teacher middleware
 Route::group(['middleware'=>'teacher'], function(){
-
+    
     Route::get('teacher/dashboard', [DashboardController::class, 'dashboard']);
     Route::get('teacher/account', [UserController::class, 'myAccount']);
     Route::post('teacher/account', [UserController::class, 'update_Myaccount']);
     Route::get('teacher/my_class_subject', [AssignClassTeacherController::class, 'MyClassSubject']);
     Route::get('teacher/my_student', [StudentController::class, 'MyStudent']);
+    
+    //Register
+    Route::get('teacher/attendance/student', [AttendanceStudentController::class, 'attendance_student_tacher']);
+    Route::post('teacher/attendance/student/save', [AttendanceStudentController::class, 'attendance_student_submit']);
+    Route::get('teacher/attendance/report', [AttendanceStudentController::class, 'attendance_report_teacher']);
 });
 
 //Student middleware

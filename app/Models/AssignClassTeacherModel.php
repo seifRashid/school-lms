@@ -45,6 +45,16 @@ class AssignClassTeacherModel extends Model
 
     }
 
+    static public function getMyClassSubjectGroup($teacher_id)
+    {
+        return self::select('assign_class_teacher.*', 'class.name as class_name', 'class.id as class_id')//suject.name to pull the name of the actual subject
+                    ->join('class', 'class.id', '=', 'assign_class_teacher.class_id')
+                    ->where('assign_class_teacher.is_delete', '=', 0)
+                    ->where('assign_class_teacher.teacher_id','=',$teacher_id)
+                    ->get();
+
+    }
+
     static public function getAlreadyFirst( $class_id, $teacher_id )
     {
         return self::where('class_id', '=', $class_id)->where('teacher_id', '=' ,$teacher_id)->first();
