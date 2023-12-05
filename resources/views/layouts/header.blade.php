@@ -249,7 +249,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="{{url('admin/examinations/exam/list')}}" class="nav-link @if(Request::segment(3)=='exam') active @endif">
+                <a href="{{url('admin/attendance/report')}}" class="nav-link @if(Request::segment(3)=='report') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ettendance Report</p>
                 </a>
@@ -312,6 +312,31 @@
               </a>
             </li>
 
+            <li class="nav-item @if(Request::segment(2)=='attendance') menu-is-opening menu-open @endif">
+            <a href="#" class="nav-link @if(Request::segment(2)=='attendance') active @endif">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Attendance
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('admin/attendance/student')}}" class="nav-link @if(Request::segment(3)=='student') active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Students Attendance</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{url('admin/attendance/report')}}" class="nav-link @if(Request::segment(3)=='report') active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ettendance Report</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
             <li class="nav-item">
               <a href="{{url('teacher/account')}}" class="nav-link @if(Request::segment(2)=='account') active @endif">
                 <i class="nav-icon far fa-user"></i>

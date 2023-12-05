@@ -62,16 +62,29 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @if(!empty($getStudent) && !empty($getStudent->count())) 
+                      @if(!empty($getStudent) && !empty($getStudent->count()))
                         @foreach ($getStudent as $value)
+                        @php
+                          $attendance_type = '';
+                          $getAttendance = $value->getAttendance($value->id, Request::get('class_id'), Request::get('attendance_date'));
+
+                          if(!empty($getAttendance->attendance_type))
+                          {
+                            $attendance_type = $getAttendance->attendance_type;
+                          }
+                        @endphp
                           <tr>
                             <td>{{$value->id}}</td>
                             <td>{{$value->name}} {{$value->last_name}}</td>
                             <td>
-                              <label><input type="radio" value="1" id="{{$value->id}}" class="SaveAttendance" name="attendance{{$value->id}}">  Present</label>
-                              <label><input type="radio" value="3" id="{{$value->id}}" class="SaveAttendance" name="attendance{{$value->id}}">  Absent</label>
-                              <label><input type="radio" value="2" id="{{$value->id}}" class="SaveAttendance" name="attendance{{$value->id}}">  Late</label>
-                              <label><input type="radio" value="4" id="{{$value->id}}" class="SaveAttendance" name="attendance{{$value->id}}">  Half Day</label>
+                              <label><input type="radio" value="1" id="{{$value->id}}" class="SaveAttendance" {{ ($attendance_type == '1') ? 'checked' : '' }}
+                              name="attendance{{$value->id}}">  Present</label>
+                              <label><input type="radio" value="3" id="{{$value->id}}" class="SaveAttendance" {{ ($attendance_type == '3') ? 'checked' : '' }}
+                              name="attendance{{$value->id}}">  Absent</label>
+                              <label><input type="radio" value="2" id="{{$value->id}}" class="SaveAttendance" {{ ($attendance_type == '2') ? 'checked' : '' }}
+                              name="attendance{{$value->id}}">  Late</label>
+                              <label><input type="radio" value="4" id="{{$value->id}}" class="SaveAttendance" {{ ($attendance_type == '4') ? 'checked' : '' }}
+                              name="attendance{{$value->id}}">  Half Day</label>
                             </td>
                           </tr>   
                         @endforeach
